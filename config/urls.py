@@ -14,8 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # 1차 -> 2차 ->3차 등...
+    # http://123.0.0.1/bookmakr/
+    # 여기선 위에 /bookmark 까지만 확인하고 bookmakr.urls 파일로 넘김
+    path('bookmark/', include('bookmark.urls')),
+
 ]

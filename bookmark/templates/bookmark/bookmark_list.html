@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <a href="{% url 'add' %}">ADD BOOKMARK </a>
+    </div>
+    
+    <!-- 템플릿 문법 -->
+
+    <!-- <thead>
+        <tr>
+            <th scope='col'>NUM</th>
+            <th scope='col'>NAME</th>
+            <th scope='col'>URL</th>
+            <th scope='col'>MODIFY</th>
+            <th scope='col'>DELETE</th>
+        </tr>
+    </thead> -->
+    <tbody>
+        
+        {% for bookmark in object_list %}
+        <div>
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td><a href="{% url 'detail' pk=bookmark.id %}">{{bookmark.site_name}}</a></td>
+            <!-- <td>user id {{bookmark.id}}</td> -->
+            <td><a href="{{bookmark.url}}" target="target_blank">{{bookmark.url}}</a></td>
+            <td><a href="{% url 'update' pk=bookmark.id %}">Update</a></td>
+            <td><a href="{% url 'delete' pk=bookmark.id %}">Delete</a></td>
+        </tr>
+        </div>
+        {% endfor %}
+
+        <a href="{% url 'add' %}">ADD</a>
+        
+    </tbody>
+</body>
+</html>

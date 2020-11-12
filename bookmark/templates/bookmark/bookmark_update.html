@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- action 작성한 data를 어느 페이지로 보내서 처리할 것인가 -->
+    <!-- get방식은 주소에 포함되어 넘어감 보안 취약  -->
+    <form action="" method="post">
+        <!-- 보안을 위한 토큰 csrf 공격을 방어함 -->
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Update">
+    </form>
+</body>
+</html>
