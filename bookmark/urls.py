@@ -8,6 +8,12 @@ urlpatterns = [
     # 내부적으론 함수형으로 처리함
     # 함수형일 경우 이름만 적으면 댐
 
+
+    # 관례적으로 templates/앱 이름/C,R,U,D 파일 생성
+    # 모든 앱마다 CRUD가 존재할수  있음
+    # 그래서 앱안에 templates를 생성 함
+
+
     # READ
     path("", BookmarkListView.as_view(), name='list'),
     # name='list' 화면 템플릿 이름, url패턴의 이름
