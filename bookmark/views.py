@@ -15,6 +15,11 @@ from .models import Bookmark
 # 클래스형 지정된 형식을 사용시 사용
 # 함수형 마음대로 만들고 싶을때
 
+# templates 우선 경로
+# 1. 장고 admin/templates 경로
+# 2. 각 앱의 폴더의 templates 폴더
+# 3. 개인이 설정한 폴더 경로
+
 
 # 웹 페이지 접속
 # URL 입력 -> 웹 서버가 뷰를 찾아 동작 -> 응답
