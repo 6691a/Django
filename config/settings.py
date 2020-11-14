@@ -56,8 +56,9 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        # os.path.join(BASE_DIR, "templates")],
+        # BASE_DIR project의 root 폴더
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
+        # 이 옵션으로 각 앱 안의 templates 폴더를 읽을 수 있음
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

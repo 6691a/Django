@@ -1,22 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
-</head>
-<body>
+
     <!-- Create, Updat는 장고에서 form을 자체적으로 제공해줌 -->
     <!-- {{form.as_table}} -->
     <!-- 비우면 자기자신
         장고는 입력과 처리를 한번에 하기에 action 비어있음
         페이지 접근은 GET, 입력 완료시 POST
      -->
+{% extends 'base.html' %}
+{% block tilte %} Bookmark ADD {%endblock%}
+{% block content %}
     <form action="" method="POST">
         {% csrf_token %}
         {{form.as_p}} 
         <input type="submit" value="ADD" class="">
     </form>
-
-</body>
-</html>
+{% endblock %}

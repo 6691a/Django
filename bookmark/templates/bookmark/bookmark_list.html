@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block tilte %} Bookmark Lists {%endblock%}
+{% block content %}
+
     <div>
         <a href="{% url 'add' %}">ADD BOOKMARK </a>
     </div>
@@ -39,5 +35,4 @@
         <a href="{% url 'add' %}">ADD</a>
         
     </tbody>
-</body>
-</html>
+{% endblock %}
