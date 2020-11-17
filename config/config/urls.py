@@ -23,6 +23,7 @@ urlpatterns = [
     # 여기선 위에 /bookmark 까지만 확인하고 bookmakr.urls 파일로 넘김
     #path('bookmark/', include('bookmark.urls')),
     path('', include('bookmark.urls')),
+    path('accounts/', include('accounts.urls')),
 
 
 ]

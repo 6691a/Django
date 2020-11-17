@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} =Registration Done {% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 panel panel-default">
+            <div class="alert alert-info">
+                Registration Success. Welcom, {{new_user1.username}}
+                <a href="/" class="btn btn-info">Move to main</a>
+                <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+{% endblock %}

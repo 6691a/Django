@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title%} * Logout * {% endblock %}
+
+{% block content %}
+<!-- 방법 1 action에 다음경로 지정 -->
+<form action="{% url 'login' %}" >
+    <div>You hav been successfully logged out!</div>
+    <button>login</button>
+</form>
+
+<!-- 방법 2 -->
+<!-- 좋은 방법 아님 -->
+<button onclick="location.href = '{% url 'login' %}'">\11S
+</button>
+
+<!-- 아래의 방법으로 만들고 CSS로 버튼처럼 보이게 만드는게 좋다 -->
+<a href="{% url 'login' %}">a url</a>
+{% endblock %}

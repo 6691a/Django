@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}
+<!-- 10줄 까지만 보여주겠다. -->
+{{object.text|truncatechars:10}}
+
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <p><img src= "{{object.photo.url}}" style="width: 100%;"></p>
+            <button type="button" class="btn btn-xs btn-info">
+                {{object.author.username}}
+            </button>
+            
+            <!-- | 템플릿 필터  -->
+            <!-- 줄바꿈 문자를 br테그로 바꿔라 -->
+            <p>Text:{{object.text|linebreaksbr}}</p>
+
+            <a href="{% url 'photo:photo_delete' pk=object.id %}" class="btn btn-outline-danger btn-sm float-right">Delete</a>
+            <a href="{% url 'photo:photo_update' pk=object.id %}" class="btn btn-outline-success btn-sm float-right">Update</a>
+
+    </div>
+    <div class="col-md-2"></div>
+
+{% endblock %}
