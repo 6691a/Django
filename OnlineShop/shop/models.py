@@ -8,7 +8,7 @@ class Category(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     # 서치엔진에 노출될 정보
     meta_description = models.TextField(blank=True)
-    # 접근을 위한 값 PK를 대신할 것Meta
+    # 접근을 위한 값 PK를 대신할 것
     slug = models.SlugField(max_length=200, db_index=True,
                             unique=True, allow_unicode=True)
 
@@ -17,7 +17,7 @@ class Category(models.Model):
         verbose_name = 'category'
         verbose_name_plural = 'categoriess'
 
-    def __init__(self):
+    def __str__(self):
         return self.name
 
     def get_absolute_url(self):
@@ -25,8 +25,31 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    category
-    NameErrorslug
-    image
-    description
-    meta_description
+    category = models.ForeignKey(
+        Category, on_delete=models.SET_NULL, null=True, related_name='products')
+    name = models.CharField(max_length=200, db_index=True)
+    slug = models.SlugField(max_length=200, db_index=True,
+                            unique=True, allow_unicode=True)
+
+    image = models.ImageField(blank=True, upload_to='products')
+    description = models.TextField(blank=True)
+    meta_description = models.TextField(blank=True)
+
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    stock = models.PositiveIntegerField()
+
+    available_display = models.BooleanField('Display', default=True)
+    available_order = models.BooleanField('Order', default=True)
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created', '-updated']
+        index_together = [['id', 'slug']]
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('shop:product_detail', args=[self.id, self.slug])
