@@ -11,6 +11,7 @@ from .serializers import AddressSerializers
 
 @csrf_exempt
 def address_list(request):
+
     if request.method == 'GET':
         query_set = Address.objects.all()
         serializer = AddressSerializers(query_set, many=True)
@@ -29,3 +30,42 @@ def address_list(request):
             # 저장 후 웹에 잘 저장됬다고 표시 해줌
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
+
+
+@csrf_exempt
+def address_pk(request, pk):
+
+    query_set = Address.objects.get(pk=pk)
+
+    if request.method == 'GET':
+        serializer = AddressSerializers(query_set)
+        return JsonResponse(serializer.data, safe=False)
+
+    elif request.method == 'PUT':
+
+        data = JSONParser().parse(request)
+
+        serializer = AddressSerializers(query_set, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
+
+    elif request.method == "DELETE":
+        query_set.delete()
+        return HttpResponse(status=204)
+
+
+@csrf_exempt
+def address_login(request):
+
+    if request.method == 'POST':
+        data = JSONParser().parse(request)
+
+        # DB의 name과 받은 data의 네임이 같은 값의 정보를 모두 가져와 query_set에 저장
+        query_set = Address.objects.get(name=data['name'])
+
+        if(data['email'] == query_set.email):
+            return HttpResponse(status=200)
+        else:
+            return HttpResponse(status=400)
